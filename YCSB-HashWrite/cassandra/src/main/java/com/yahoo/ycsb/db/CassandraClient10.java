@@ -55,6 +55,8 @@ public class CassandraClient10 extends DB
   public int ConnectionRetries;
   public int OperationRetries;
   public String column_family;
+  private static Boolean running=true;
+  private static String ringState="";
 
   public static final String CONNECTION_RETRY_PROPERTY = "cassandra.connectionretries";
   public static final String CONNECTION_RETRY_PROPERTY_DEFAULT = "300";
@@ -730,8 +732,31 @@ public class CassandraClient10 extends DB
     return Error;
   }
 
+
+
   public static void main(String[] args)
   {
+  
+  /*-------------------------patch--------------------*/ 	
+  Runtime.getRuntime().exec("mkfifo .pipe");
+    Thread t = new Thread() {
+        public void run() {
+            try {
+                
+                BufferedReader r = new BufferedReader(new FileReader(".pipe"));
+                while (running) 
+                {
+                    ringState = r.readLine();
+                    if (ringState != null) {
+                        System.out.println("Read from pipe :" + ringState);
+                    }
+                }
+            } catch (Exception e) {}
+        }
+    };
+    t.start();
+    
+   /*-------------------------------------------------------------*/ 
     CassandraClient10 cli = new CassandraClient10();
 
     Properties props = new Properties();
@@ -769,6 +794,7 @@ public class CassandraClient10 extends DB
 
     res = cli.delete("usertable", "BrianFrankCooper");
     System.out.println("Result of delete: " + res);
+ running=false;   
   }
 
   /*
