@@ -56,7 +56,7 @@ public class CassandraClient10 extends DB
   public int OperationRetries;
   public String column_family;
   private static Boolean running=true;
-  private static String ringState="";
+  private static String ringState=""; //109.231.85.43<>-3074457345618258400|109.231.85.85<>0|
 
   public static final String CONNECTION_RETRY_PROPERTY = "cassandra.connectionretries";
   public static final String CONNECTION_RETRY_PROPERTY_DEFAULT = "300";
