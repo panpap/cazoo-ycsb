@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/DAIS13/!svn/ver/86/src/YCSB/jdbc/src/main/java/com/yahoo/ycsb/db
+END
+JdbcDBCli.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/DAIS13/!svn/ver/86/src/YCSB/jdbc/src/main/java/com/yahoo/ycsb/db/JdbcDBCli.java
+END
+JdbcDBClientConstants.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/DAIS13/!svn/ver/86/src/YCSB/jdbc/src/main/java/com/yahoo/ycsb/db/JdbcDBClientConstants.java
+END
+JdbcDBCreateTable.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/DAIS13/!svn/ver/86/src/YCSB/jdbc/src/main/java/com/yahoo/ycsb/db/JdbcDBCreateTable.java
+END
+JdbcDBClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/DAIS13/!svn/ver/86/src/YCSB/jdbc/src/main/java/com/yahoo/ycsb/db/JdbcDBClient.java
+END

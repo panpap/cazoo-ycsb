@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/DAIS13/!svn/ver/86/src/YCSB/voldemort/src/main/resources/config
+END
+stores.xml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/DAIS13/!svn/ver/86/src/YCSB/voldemort/src/main/resources/config/stores.xml
+END
+cluster.xml
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/DAIS13/!svn/ver/86/src/YCSB/voldemort/src/main/resources/config/cluster.xml
+END
+server.properties
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/DAIS13/!svn/ver/86/src/YCSB/voldemort/src/main/resources/config/server.properties
+END

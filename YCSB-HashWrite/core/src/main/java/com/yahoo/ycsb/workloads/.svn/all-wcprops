@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/DAIS13/!svn/ver/86/src/YCSB/core/src/main/java/com/yahoo/ycsb/workloads
+END
+ConstantOccupancyWorkload.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/DAIS13/!svn/ver/86/src/YCSB/core/src/main/java/com/yahoo/ycsb/workloads/ConstantOccupancyWorkload.java
+END
+CoreWorkload.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/DAIS13/!svn/ver/86/src/YCSB/core/src/main/java/com/yahoo/ycsb/workloads/CoreWorkload.java
+END

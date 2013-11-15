@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/DAIS13/!svn/ver/86/src/YCSB/doc/javadoc/com/yahoo/ycsb/db
+END
+CassandraClient.html
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/DAIS13/!svn/ver/86/src/YCSB/doc/javadoc/com/yahoo/ycsb/db/CassandraClient.html
+END
+ShardClient.html
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/DAIS13/!svn/ver/86/src/YCSB/doc/javadoc/com/yahoo/ycsb/db/ShardClient.html
+END
+HBaseClient.html
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/DAIS13/!svn/ver/86/src/YCSB/doc/javadoc/com/yahoo/ycsb/db/HBaseClient.html
+END
+SherpaClient.html
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/DAIS13/!svn/ver/86/src/YCSB/doc/javadoc/com/yahoo/ycsb/db/SherpaClient.html
+END
+package-frame.html
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/DAIS13/!svn/ver/86/src/YCSB/doc/javadoc/com/yahoo/ycsb/db/package-frame.html
+END
+package-summary.html
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/DAIS13/!svn/ver/86/src/YCSB/doc/javadoc/com/yahoo/ycsb/db/package-summary.html
+END
+package-tree.html
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/DAIS13/!svn/ver/86/src/YCSB/doc/javadoc/com/yahoo/ycsb/db/package-tree.html
+END

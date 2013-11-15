@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/DAIS13/!svn/ver/86/src/YCSB/core/src/main/java/com/yahoo/ycsb/measurements/exporter
+END
+MeasurementsExporter.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/DAIS13/!svn/ver/86/src/YCSB/core/src/main/java/com/yahoo/ycsb/measurements/exporter/MeasurementsExporter.java
+END
+TextMeasurementsExporter.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/DAIS13/!svn/ver/86/src/YCSB/core/src/main/java/com/yahoo/ycsb/measurements/exporter/TextMeasurementsExporter.java
+END
+JSONMeasurementsExporter.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/DAIS13/!svn/ver/86/src/YCSB/core/src/main/java/com/yahoo/ycsb/measurements/exporter/JSONMeasurementsExporter.java
+END

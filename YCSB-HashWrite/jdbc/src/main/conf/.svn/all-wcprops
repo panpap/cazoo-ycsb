@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/DAIS13/!svn/ver/86/src/YCSB/jdbc/src/main/conf
+END
+h2.properties
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/DAIS13/!svn/ver/86/src/YCSB/jdbc/src/main/conf/h2.properties
+END
+db.properties
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/DAIS13/!svn/ver/86/src/YCSB/jdbc/src/main/conf/db.properties
+END

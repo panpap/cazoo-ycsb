@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/DAIS13/!svn/ver/86/src/YCSB/core/src/main/java/com/yahoo/ycsb/generator
+END
+ZipfianGenerator.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/DAIS13/!svn/ver/86/src/YCSB/core/src/main/java/com/yahoo/ycsb/generator/ZipfianGenerator.java
+END
+DiscreteGenerator.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/DAIS13/!svn/ver/86/src/YCSB/core/src/main/java/com/yahoo/ycsb/generator/DiscreteGenerator.java
+END
+ExponentialGenerator.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/DAIS13/!svn/ver/86/src/YCSB/core/src/main/java/com/yahoo/ycsb/generator/ExponentialGenerator.java
+END
+ConstantIntegerGenerator.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/DAIS13/!svn/ver/86/src/YCSB/core/src/main/java/com/yahoo/ycsb/generator/ConstantIntegerGenerator.java
+END
+HistogramGenerator.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/DAIS13/!svn/ver/86/src/YCSB/core/src/main/java/com/yahoo/ycsb/generator/HistogramGenerator.java
+END
+IntegerGenerator.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/DAIS13/!svn/ver/86/src/YCSB/core/src/main/java/com/yahoo/ycsb/generator/IntegerGenerator.java
+END
+ScrambledZipfianGenerator.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/DAIS13/!svn/ver/86/src/YCSB/core/src/main/java/com/yahoo/ycsb/generator/ScrambledZipfianGenerator.java
+END
+UniformIntegerGenerator.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/DAIS13/!svn/ver/86/src/YCSB/core/src/main/java/com/yahoo/ycsb/generator/UniformIntegerGenerator.java
+END
+HotspotIntegerGenerator.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/DAIS13/!svn/ver/86/src/YCSB/core/src/main/java/com/yahoo/ycsb/generator/HotspotIntegerGenerator.java
+END
+CounterGenerator.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/DAIS13/!svn/ver/86/src/YCSB/core/src/main/java/com/yahoo/ycsb/generator/CounterGenerator.java
+END
+FileGenerator.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/DAIS13/!svn/ver/86/src/YCSB/core/src/main/java/com/yahoo/ycsb/generator/FileGenerator.java
+END
+Generator.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/DAIS13/!svn/ver/86/src/YCSB/core/src/main/java/com/yahoo/ycsb/generator/Generator.java
+END
+SkewedLatestGenerator.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/DAIS13/!svn/ver/86/src/YCSB/core/src/main/java/com/yahoo/ycsb/generator/SkewedLatestGenerator.java
+END
+UniformGenerator.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/DAIS13/!svn/ver/86/src/YCSB/core/src/main/java/com/yahoo/ycsb/generator/UniformGenerator.java
+END

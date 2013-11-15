@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/DAIS13/!svn/ver/86/src/YCSB/hbase/src/main/conf
+END
+hbase-site.xml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/DAIS13/!svn/ver/86/src/YCSB/hbase/src/main/conf/hbase-site.xml
+END
