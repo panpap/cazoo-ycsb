@@ -164,6 +164,17 @@ public class CassandraClient10 extends DB
 
     
     array = new Cassandra.Client[4];
+   
+/* ringState string parse*/
+String[] binds = ringState.split("\\|");
+Hashtable <Long,String> nodes = new Hashtable<Long, String>();
+for(int i=0;i<binds.length;i++)
+{
+    String[] parts=binds[i].split("<>");
+    nodes.put(Long.parseLong(parts[1]),parts[0]);
+}
+/* ---------------------*/
+   
     String hh = "109.231.85.83";
     String[] allhosts = hh.split(",");
     
