@@ -181,6 +181,7 @@ public class CassandraClient10 extends DB
               e.printStackTrace(System.out);
             }
             myhost = newhost;
+            System.out.println("pgaref All done!!!");
         }
         
     	
