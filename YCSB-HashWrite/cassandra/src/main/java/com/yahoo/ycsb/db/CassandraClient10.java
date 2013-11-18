@@ -28,6 +28,9 @@ import java.util.HashSet;
 import java.util.Vector;
 import java.util.Random;
 import java.util.Properties;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
@@ -131,6 +134,48 @@ public class CassandraClient10 extends DB
     }
     
     
+    public void pgarefinit(String myhost) {
+    	tr.close();
+        Exception connectexception = null;
+
+        for (int retry = 0; retry < ConnectionRetries; retry++)
+        {
+          tr = new TFramedTransport(new TSocket(myhost, 9160));
+          TProtocol proto = new TBinaryProtocol(tr);
+          client = new Cassandra.Client(proto);
+          try
+          {
+            tr.open();
+            connectexception = null;
+            break;
+          } catch (Exception e)
+          {
+            connectexception = e;
+          }
+          try
+          {
+            Thread.sleep(1000);
+          } catch (InterruptedException e)
+          {
+          }
+        }
+        if (connectexception != null)
+        {
+          System.err.println("Unable to connect to " + myhost + " after " + ConnectionRetries
+              + " tries");
+        }
+        try
+        {
+          client.set_keyspace("usertable");
+        }
+        catch (Exception e)
+        {
+          e.printStackTrace();
+          e.printStackTrace(System.out);
+        }
+    	
+    }
+    
   /**
    * Initialize any state for this DB. Called once per DB instance; there is one
    * DB instance per client thread.
@@ -138,19 +183,30 @@ public class CassandraClient10 extends DB
   public void init() throws DBException
   {
     /*-------------------------patch--------------------*/ 	
-  Runtime.getRuntime().exec("mkfifo .pipe");
+  try {
+	Runtime.getRuntime().exec("mkfifo pipe");
+	} catch (IOException e1) {
+		System.out.println("pgaref - Runntime Exception!!!");
+	}
     Thread t = new Thread() {
         public void run() {
             try {
                 
-                BufferedReader r = new BufferedReader(new FileReader(".pipe"));
+                BufferedReader r = new BufferedReader(new FileReader("pipe"));
                 while (running) 
                 {
                     ringState = r.readLine();
                     if (ringState != null) {
                         System.out.println("Read from pipe :" + ringState);
                     }
+                    String[] binds=ringState.split("/");
+                    String[] tmp=binds[1].split(":");
+                    String host=tmp[0];	//ip
+                    String port=tmp[1];	//port
+                    /* magic part */
+                    pgarefinit(host);
                 }
+                r.close();
             } catch (Exception e) {}
         }
     };
@@ -197,17 +253,14 @@ for(int i=0;i<binds.length;i++)
 }
 /* ---------------------*/
    //Master:/109.231.85.83:2887
-  String[] binds=ringState.split("/");
-  String[] tmp=bind[1].split(":");
-  String host=tmp[0];	//ip
-   String port=tmp[1];	//port
+
    
     String hh = "109.231.85.83";
     String[] allhosts = hh.split(",");
     
-    for(int i= 0 ; i < allhosts.length ; i++){
-    String myhost = allhosts[i];
-
+   // for(int i= 0 ; i < allhosts.length ; i++){
+   // String myhost = allhosts[0];
+    String myhost = hh;
     
     Exception connectexception = null;
 
@@ -254,9 +307,9 @@ for(int i=0;i<binds.length;i++)
             throw new DBException(e);
         }
     }
-    array[i] = client;
+  //  array[i] = client;
     //enddddd
-    }
+   // }
   }
   protected static long getblock(ByteBuffer key, int offset, int index)
     {
