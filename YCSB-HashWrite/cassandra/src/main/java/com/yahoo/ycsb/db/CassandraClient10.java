@@ -138,7 +138,7 @@ public class CassandraClient10 extends DB
     
     public static void pgarefinit(String myhost) {
         Exception connectexception = null;
-        System.out.println("Mpika change");
+        System.out.println("PG Mpika change");
         
         /*for (int retry = 0; retry < ConnectionRetries; retry++)
         {
