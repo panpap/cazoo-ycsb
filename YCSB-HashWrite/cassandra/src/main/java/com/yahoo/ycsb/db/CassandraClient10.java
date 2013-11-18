@@ -144,12 +144,13 @@ public class CassandraClient10 extends DB
         }
         else{
         	System.out.println("Do something: "+ newhost);
-        	tr.close();
+        	//tr.close();
+        	
         	for (int retry = 0; retry < ConnectionRetries; retry++)
             {
               tr = new TFramedTransport(new TSocket(newhost, 9160));
               TProtocol proto = new TBinaryProtocol(tr);
-              client = new Cassandra.Client(proto);
+              Instance.client = new Cassandra.Client(proto);
               try
               {
             	tr.open();
