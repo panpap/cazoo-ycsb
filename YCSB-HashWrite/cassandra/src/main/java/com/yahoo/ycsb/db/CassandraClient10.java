@@ -146,7 +146,7 @@ public class CassandraClient10 extends DB
         	System.out.println("Do something!");
         	for (int retry = 0; retry < ConnectionRetries; retry++)
             {
-              tr = new TFramedTransport(new TSocket(myhost, 9160));
+              tr = new TFramedTransport(new TSocket(newhost, 9160));
               TProtocol proto = new TBinaryProtocol(tr);
               client = new Cassandra.Client(proto);
               try
@@ -167,7 +167,7 @@ public class CassandraClient10 extends DB
             }
             if (connectexception != null)
             {
-              System.err.println("Unable to connect to " + myhost + " after " + ConnectionRetries
+              System.err.println("Unable to connect to " + newhost + " after " + ConnectionRetries
                   + " tries");
             }
             try
