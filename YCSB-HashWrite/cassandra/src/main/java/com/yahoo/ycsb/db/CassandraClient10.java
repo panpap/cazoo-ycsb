@@ -95,7 +95,7 @@ public class CassandraClient10 extends DB
 
   boolean _debug = false;
 
-  String _table = "usertable";
+  String _table = "";
   Exception errorexception = null;
 
   List<Mutation> mutations = new ArrayList<Mutation>();
