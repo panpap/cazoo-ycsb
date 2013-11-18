@@ -87,15 +87,15 @@ public class CassandraClient10 extends DB
   public static final String DELETE_CONSISTENCY_LEVEL_PROPERTY_DEFAULT = "ONE";
 
 
-  TTransport tr;
+  static TTransport tr;
   static CassandraClient10 Instance;
-  Cassandra.Client client;
+  static Cassandra.Client client;
   
-  Cassandra.Client [] array;
+ // Cassandra.Client [] array;
 
   boolean _debug = false;
 
-  String _table = "";
+  String _table = "usertable";
   Exception errorexception = null;
 
   List<Mutation> mutations = new ArrayList<Mutation>();
@@ -139,15 +139,15 @@ public class CassandraClient10 extends DB
     public static void pgarefinit(String myhost) {
     	//CassandraClient10.Instance.client.close();
         Exception connectexception = null;
-
+        tr.close();
         for (int retry = 0; retry < ConnectionRetries; retry++)
         {
-          CassandraClient10.Instance.tr = new TFramedTransport(new TSocket(myhost, 9160));
+          tr = new TFramedTransport(new TSocket(myhost, 9160));
           TProtocol proto = new TBinaryProtocol(CassandraClient10.Instance.tr);
-          CassandraClient10.Instance.client = new Cassandra.Client(proto);
+          client = new Cassandra.Client(proto);
           try
           {
-        	CassandraClient10.Instance.tr.open();
+        	tr.open();
             connectexception = null;
             break;
           } catch (Exception e)
@@ -168,7 +168,7 @@ public class CassandraClient10 extends DB
         }
         try
         {
-        	CassandraClient10.Instance.client.set_keyspace("usertable");
+        	client.set_keyspace("usertable");
         }
         catch (Exception e)
         {
