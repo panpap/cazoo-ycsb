@@ -87,9 +87,9 @@ public class CassandraClient10 extends DB
   public static final String DELETE_CONSISTENCY_LEVEL_PROPERTY_DEFAULT = "ONE";
 
 
-  static TTransport tr;
+  TTransport tr;
   static CassandraClient10 Instance;
-  static Cassandra.Client client;
+   Cassandra.Client client;
   
  // Cassandra.Client [] array;
 
@@ -138,7 +138,9 @@ public class CassandraClient10 extends DB
     
     public static void pgarefinit(String myhost) {
         Exception connectexception = null;
-        for (int retry = 0; retry < ConnectionRetries; retry++)
+        System.out.println("Mpika change");
+        
+        /*for (int retry = 0; retry < ConnectionRetries; retry++)
         {
           tr = new TFramedTransport(new TSocket(myhost, 9160));
           TProtocol proto = new TBinaryProtocol(CassandraClient10.Instance.tr);
@@ -172,7 +174,7 @@ public class CassandraClient10 extends DB
         {
           e.printStackTrace();
           e.printStackTrace(System.out);
-        }
+        }*/
     	
     }
     
