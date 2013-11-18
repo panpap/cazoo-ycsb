@@ -87,10 +87,10 @@ public class CassandraClient10 extends DB
   public static final String DELETE_CONSISTENCY_LEVEL_PROPERTY_DEFAULT = "ONE";
 
 
-  TTransport tr;
+  static TTransport tr;
   static CassandraClient10 Instance;
-   Cassandra.Client client;
-  
+  static Cassandra.Client client;
+   static String myhost;
  // Cassandra.Client [] array;
 
   boolean _debug = false;
@@ -136,45 +136,51 @@ public class CassandraClient10 extends DB
     }
     
     
-    public static void pgarefinit(String myhost) {
+    public static void pgarefinit(String newhost) {
         Exception connectexception = null;
         System.out.println("PG Mpika change");
+        if(myhost.compareTo(newhost) == 0 ){
+        	System.out.println("Do nothing!");
+        }
+        else{
+        	System.out.println("Do something!");
+        	for (int retry = 0; retry < ConnectionRetries; retry++)
+            {
+              tr = new TFramedTransport(new TSocket(myhost, 9160));
+              TProtocol proto = new TBinaryProtocol(CassandraClient10.Instance.tr);
+              client = new Cassandra.Client(proto);
+              try
+              {
+            	tr.open();
+                connectexception = null;
+                break;
+              } catch (Exception e)
+              {
+                connectexception = e;
+              }
+              try
+              {
+                Thread.sleep(1000);
+              } catch (InterruptedException e)
+              {
+              }
+            }
+            if (connectexception != null)
+            {
+              System.err.println("Unable to connect to " + myhost + " after " + ConnectionRetries
+                  + " tries");
+            }
+            try
+            {
+            	client.set_keyspace("usertable");
+            }
+            catch (Exception e)
+            {
+              e.printStackTrace();
+              e.printStackTrace(System.out);
+            }
+        }
         
-        /*for (int retry = 0; retry < ConnectionRetries; retry++)
-        {
-          tr = new TFramedTransport(new TSocket(myhost, 9160));
-          TProtocol proto = new TBinaryProtocol(CassandraClient10.Instance.tr);
-          client = new Cassandra.Client(proto);
-          try
-          {
-        	tr.open();
-            connectexception = null;
-            break;
-          } catch (Exception e)
-          {
-            connectexception = e;
-          }
-          try
-          {
-            Thread.sleep(1000);
-          } catch (InterruptedException e)
-          {
-          }
-        }
-        if (connectexception != null)
-        {
-          System.err.println("Unable to connect to " + myhost + " after " + ConnectionRetries
-              + " tries");
-        }
-        try
-        {
-        	client.set_keyspace("usertable");
-        }
-        catch (Exception e)
-        {
-          e.printStackTrace();
-          e.printStackTrace(System.out);
-        }*/
     	
     }
     
@@ -220,7 +226,7 @@ public class CassandraClient10 extends DB
     
    // for(int i= 0 ; i < allhosts.length ; i++){
    // String myhost = allhosts[0];
-    String myhost = hh;
+    myhost = hh;
     
     Exception connectexception = null;
 
