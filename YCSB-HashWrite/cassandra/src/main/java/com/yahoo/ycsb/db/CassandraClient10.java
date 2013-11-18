@@ -41,6 +41,7 @@ import org.apache.thrift.transport.TFramedTransport;
 import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.protocol.TBinaryProtocol;
+import org.apache.zookeeper.KeeperException;
 import org.apache.cassandra.thrift.*;
 
 
@@ -55,7 +56,7 @@ public class CassandraClient10 extends DB
   public static final int Error = -1;
   public static final ByteBuffer emptyByteBuffer = ByteBuffer.wrap(new byte[0]);
 
-  public int ConnectionRetries;
+  public static int ConnectionRetries;
   public int OperationRetries;
   public String column_family;
   private static Boolean running=true;
@@ -86,8 +87,8 @@ public class CassandraClient10 extends DB
   public static final String DELETE_CONSISTENCY_LEVEL_PROPERTY_DEFAULT = "ONE";
 
 
-  TTransport tr;
-  Cassandra.Client client;
+  static TTransport tr;
+  static Cassandra.Client client;
   
   Cassandra.Client [] array;
 
@@ -134,7 +135,7 @@ public class CassandraClient10 extends DB
     }
     
     
-    public void pgarefinit(String myhost) {
+    public static void pgarefinit(String myhost) {
     	tr.close();
         Exception connectexception = null;
 
@@ -183,31 +184,17 @@ public class CassandraClient10 extends DB
   public void init() throws DBException
   {
     /*-------------------------patch--------------------*/ 	
-  try {
-	Runtime.getRuntime().exec("mkfifo pipe");
-	} catch (IOException e1) {
-		System.out.println("pgaref - Runntime Exception!!!");
-	}
     Thread t = new Thread() {
         public void run() {
-            try {
-                
-                BufferedReader r = new BufferedReader(new FileReader("pipe"));
-                while (running) 
-                {
-                    ringState = r.readLine();
-                    if (ringState != null) {
-                        System.out.println("Read from pipe :" + ringState);
-                    }
-                    String[] binds=ringState.split("/");
-                    String[] tmp=binds[1].split(":");
-                    String host=tmp[0];	//ip
-                    String port=tmp[1];	//port
-                    /* magic part */
-                    pgarefinit(host);
-                }
-                r.close();
-            } catch (Exception e) {}
+        	try {
+				new Executor("109.231.85.43:2181", "/cazooMaster").run();
+			} catch (KeeperException e) {
+				System.out.println("pgaref KeeperException");
+				e.printStackTrace();
+			} catch (IOException e) {
+				System.out.println("pgaref IOException");
+				e.printStackTrace();
+			}
         }
     };
     t.start();
@@ -241,7 +228,7 @@ public class CassandraClient10 extends DB
     _debug = Boolean.parseBoolean(getProperties().getProperty("debug", "false"));
 
     
-    array = new Cassandra.Client[4];
+   // array = new Cassandra.Client[4];
    
 /* ringState string parse*/
 /*String[] binds = ringState.split("\\|");
