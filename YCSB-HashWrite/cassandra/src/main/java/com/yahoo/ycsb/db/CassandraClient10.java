@@ -521,7 +521,9 @@ public class CassandraClient10 extends DB
       {
       }
     }
-    errorexception.printStackTrace();
+    if(errorexception != null)
+    	tr.close();
+    //errorexception.printStackTrace();
     errorexception.printStackTrace(System.out);
     return Error;
 
