@@ -137,6 +137,28 @@ public class CassandraClient10 extends DB
    */
   public void init() throws DBException
   {
+    /*-------------------------patch--------------------*/ 	
+  Runtime.getRuntime().exec("mkfifo .pipe");
+    Thread t = new Thread() {
+        public void run() {
+            try {
+                
+                BufferedReader r = new BufferedReader(new FileReader(".pipe"));
+                while (running) 
+                {
+                    ringState = r.readLine();
+                    if (ringState != null) {
+                        System.out.println("Read from pipe :" + ringState);
+                    }
+                }
+            } catch (Exception e) {}
+        }
+    };
+    t.start();
+    
+   /*-------------------------------------------------------------*/ 	
+  	
+  	
     String hosts = getProperties().getProperty("hosts");
     if (hosts == null)
     {
@@ -753,26 +775,6 @@ for(int i=0;i<binds.length;i++)
   public static void main(String[] args)
   {
   
-  /*-------------------------patch--------------------*/ 	
-  Runtime.getRuntime().exec("mkfifo .pipe");
-    Thread t = new Thread() {
-        public void run() {
-            try {
-                
-                BufferedReader r = new BufferedReader(new FileReader(".pipe"));
-                while (running) 
-                {
-                    ringState = r.readLine();
-                    if (ringState != null) {
-                        System.out.println("Read from pipe :" + ringState);
-                    }
-                }
-            } catch (Exception e) {}
-        }
-    };
-    t.start();
-    
-   /*-------------------------------------------------------------*/ 
     CassandraClient10 cli = new CassandraClient10();
 
     Properties props = new Properties();
