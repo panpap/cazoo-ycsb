@@ -87,8 +87,9 @@ public class CassandraClient10 extends DB
   public static final String DELETE_CONSISTENCY_LEVEL_PROPERTY_DEFAULT = "ONE";
 
 
-  static TTransport tr;
-  static Cassandra.Client client;
+  TTransport tr;
+  static CassandraClient10 Instance;
+  Cassandra.Client client;
   
   Cassandra.Client [] array;
 
@@ -136,17 +137,17 @@ public class CassandraClient10 extends DB
     
     
     public static void pgarefinit(String myhost) {
-    	tr.close();
+    	//CassandraClient10.Instance.client.close();
         Exception connectexception = null;
 
         for (int retry = 0; retry < ConnectionRetries; retry++)
         {
-          tr = new TFramedTransport(new TSocket(myhost, 9160));
-          TProtocol proto = new TBinaryProtocol(tr);
-          client = new Cassandra.Client(proto);
+          CassandraClient10.Instance.tr = new TFramedTransport(new TSocket(myhost, 9160));
+          TProtocol proto = new TBinaryProtocol(CassandraClient10.Instance.tr);
+          CassandraClient10.Instance.client = new Cassandra.Client(proto);
           try
           {
-            tr.open();
+        	CassandraClient10.Instance.tr.open();
             connectexception = null;
             break;
           } catch (Exception e)
@@ -167,7 +168,7 @@ public class CassandraClient10 extends DB
         }
         try
         {
-          client.set_keyspace("usertable");
+        	CassandraClient10.Instance.client.set_keyspace("usertable");
         }
         catch (Exception e)
         {
@@ -278,22 +279,7 @@ for(int i=0;i<binds.length;i++)
           + " tries");
       throw new DBException(connectexception);
     }
-
-    if (username != null && password != null)
-    {
-        Map<String,String> cred = new HashMap<String,String>();
-        cred.put("username", username);
-        cred.put("password", password);
-        AuthenticationRequest req = new AuthenticationRequest(cred);
-        try
-        {
-            client.login(req);
-        }
-        catch (Exception e)
-        {
-            throw new DBException(e);
-        }
-    }
+    Instance = this;
   //  array[i] = client;
     //enddddd
    // }
