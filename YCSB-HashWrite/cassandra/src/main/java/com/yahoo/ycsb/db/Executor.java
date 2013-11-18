@@ -36,7 +36,7 @@ public class Executor
 
     /**
      * @param args
-     
+     */
     public static void main(String[] args) {
         
         String hostPort = "109.231.85.43:2181";
@@ -44,7 +44,7 @@ public class Executor
        // String exec[] = new String[args.length - 3];
         
         try {
-            new Executor(hostPort, znode, null).run();
+            new Executor(hostPort, znode).run();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -99,7 +99,7 @@ public class Executor
 
         }
     }
-
+    
     public void exists(byte[] data) {
         if (data == null) {
             if (child != null) {
@@ -120,7 +120,7 @@ public class Executor
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            }
+            }/*
             try {
                 System.out.println("Starting child - New event");
                 String ringstate = new String(data, "UTF-8");
@@ -134,7 +134,7 @@ public class Executor
                 //child = Runtime.getRuntime().exec(exec);
             } catch (IOException e) {
                 e.printStackTrace();
-            }
+            }*/
         }
     }
 }
