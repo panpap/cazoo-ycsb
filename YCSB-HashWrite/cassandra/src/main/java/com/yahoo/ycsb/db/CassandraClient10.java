@@ -222,11 +222,11 @@ public class CassandraClient10 extends DB
    
    
     String hh = "109.231.85.83";
-    String[] allhosts = hh.split(",");
+    String[] allhosts = hosts.split(",");
     
    // for(int i= 0 ; i < allhosts.length ; i++){
    // String myhost = allhosts[0];
-    myhost = hh;
+    myhost = allhosts[0];
     
     Exception connectexception = null;
 
