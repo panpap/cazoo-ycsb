@@ -4,6 +4,7 @@ package com.yahoo.ycsb.db;
  * A simple class that monitors the data and existence of a ZooKeeper
  * node. It uses asynchronous ZooKeeper APIs.
  */
+import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
 import org.apache.zookeeper.KeeperException;
@@ -122,6 +123,19 @@ public class DataMonitor implements Watcher, StatCallback {
                 || (b != null && !Arrays.equals(prevData, b))) {
             listener.exists(b);
             prevData = b;
+            String ringstate = null;
+			try {
+				ringstate = new String(prevData, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            System.out.println("New Data: "+  ringstate);
+            String[] binds=ringstate.split("/");
+            String[] tmp=binds[1].split(":");
+            String host=tmp[0];	//ip
+            String port=tmp[1];	//port
+            com.yahoo.ycsb.db.CassandraClient10.pgarefinit(host);
         }
     }
 }
