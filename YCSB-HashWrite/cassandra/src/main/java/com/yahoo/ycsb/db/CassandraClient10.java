@@ -184,7 +184,7 @@ public class CassandraClient10 extends DB
    */
   public void init() throws DBException
   {
-    /*-------------------------patch--------------------*/ 	
+    /*-------------------------patch-------------------- 	
     Thread t = new Thread() {
         public void run() {
         	try {
