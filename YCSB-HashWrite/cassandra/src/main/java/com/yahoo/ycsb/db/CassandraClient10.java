@@ -184,7 +184,7 @@ public class CassandraClient10 extends DB
    */
   public void init() throws DBException
   {
-    /*-------------------------patch-------------------- 	
+    /*-------------------------patch-------------------- */	
     Thread t = new Thread() {
         public void run() {
         	try {
@@ -666,7 +666,6 @@ for(int i=0;i<binds.length;i++)
    */
   public int insert(String table, String key, HashMap<String, ByteIterator> values)
   {
-	  client = array[0];
     if (!_table.equals(table)) {
       try
       {
