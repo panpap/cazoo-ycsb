@@ -138,12 +138,13 @@ public class CassandraClient10 extends DB
     
     public static void pgarefinit(String newhost) {
         Exception connectexception = null;
-        System.out.println("PG Mpika change");
+        System.out.println("PG Mpika change!");
         if(myhost.compareTo(newhost) == 0 ){
         	System.out.println("Do nothing!");
         }
         else{
-        	System.out.println("Do something!");
+        	System.out.println("Do something: "+ newhost);
+        	tr.close();
         	for (int retry = 0; retry < ConnectionRetries; retry++)
             {
               tr = new TFramedTransport(new TSocket(newhost, 9160));
@@ -179,6 +180,7 @@ public class CassandraClient10 extends DB
               e.printStackTrace();
               e.printStackTrace(System.out);
             }
+            myhost = newhost;
         }
         
     	
