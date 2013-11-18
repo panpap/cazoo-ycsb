@@ -184,24 +184,7 @@ public class CassandraClient10 extends DB
    */
   public void init() throws DBException
   {
-    /*-------------------------patch-------------------- */	
-    Thread t = new Thread() {
-        public void run() {
-        	try {
-				new Executor("109.231.85.43:2181", "/cazooMaster").run();
-			} catch (KeeperException e) {
-				System.out.println("pgaref KeeperException");
-				e.printStackTrace();
-			} catch (IOException e) {
-				System.out.println("pgaref IOException");
-				e.printStackTrace();
-			}
-        }
-    };
-    t.start();
     
-   /*-------------------------------------------------------------*/ 	
-  	
   	
     String hosts = getProperties().getProperty("hosts");
     if (hosts == null)
@@ -283,6 +266,30 @@ for(int i=0;i<binds.length;i++)
   //  array[i] = client;
     //enddddd
    // }
+    
+    
+    
+    /*-------------------------patch-------------------- */	
+    Thread t = new Thread() {
+        public void run() {
+        	try {
+				new Executor("109.231.85.43:2181", "/cazooMaster").run();
+			} catch (KeeperException e) {
+				System.out.println("pgaref KeeperException");
+				e.printStackTrace();
+			} catch (IOException e) {
+				System.out.println("pgaref IOException");
+				e.printStackTrace();
+			}
+        }
+    };
+    t.start();
+    
+   /*-------------------------------------------------------------*/ 	
+  	
+    
+    
+    
   }
   protected static long getblock(ByteBuffer key, int offset, int index)
     {
