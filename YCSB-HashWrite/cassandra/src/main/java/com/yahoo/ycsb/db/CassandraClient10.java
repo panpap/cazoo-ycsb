@@ -534,9 +534,9 @@ public class CassandraClient10 extends DB
     }
   
     	System.out.println("Read TR is : "+ (tr.isOpen()));
-    //errorexception.printStackTrace();
+    /*errorexception.printStackTrace();
     if(errorexception != null)
-    	errorexception.printStackTrace(System.out);
+    	errorexception.printStackTrace(System.out);*/
     return Error;
 
   }
