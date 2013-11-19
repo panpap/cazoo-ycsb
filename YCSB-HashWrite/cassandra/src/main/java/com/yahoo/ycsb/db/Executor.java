@@ -28,7 +28,15 @@ public class Executor
     ZooKeeper zk;
 
     Process child;
+    
+    CassandraClient10 client;
 
+    public Executor(String hostPort, String znode, CassandraClient10 cl) throws KeeperException, IOException {
+        zk = new ZooKeeper(hostPort, 3000, this);
+        cl = client;
+        dm = new DataMonitor(zk, znode, null, this, cl);
+        
+    }
     public Executor(String hostPort, String znode) throws KeeperException, IOException {
         zk = new ZooKeeper(hostPort, 3000, this);
         dm = new DataMonitor(zk, znode, null, this);
@@ -36,7 +44,7 @@ public class Executor
 
     /**
      * @param args
-     */
+     
     public static void main(String[] args) {
         
         String hostPort = "109.231.85.43:2181";
