@@ -57,7 +57,7 @@ public class CassandraClient10 extends DB
   public static final int Error = -1;
   public static final ByteBuffer emptyByteBuffer = ByteBuffer.wrap(new byte[0]);
 
-  public static int ConnectionRetries = 2;
+  public static int ConnectionRetries = 1;
   public int OperationRetries;
   public String column_family;
   private static Boolean running=true;
@@ -94,7 +94,7 @@ public class CassandraClient10 extends DB
    static String myhost;
  // Cassandra.Client [] array;
    Executor myExecutor= null;
-  boolean _debug = true;
+  boolean _debug = false;
 
   String _table = "";
   Exception errorexception = null;
@@ -184,7 +184,7 @@ public class CassandraClient10 extends DB
             }
             myhost = newhost;
             System.out.println("pgaref All done!!!");
-            System.out.println("TR open? " + (tr.isOpen()));
+            System.out.println("pgarefinit TR open? " + (tr.isOpen()));
             try {
 				System.out.println("Client "+ this.client.describe_cluster_name());
 			} catch (TException e) {
