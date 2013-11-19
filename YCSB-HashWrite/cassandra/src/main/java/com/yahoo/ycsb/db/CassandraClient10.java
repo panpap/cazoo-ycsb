@@ -92,7 +92,7 @@ public class CassandraClient10 extends DB
   Cassandra.Client client;
    static String myhost;
  // Cassandra.Client [] array;
-
+   Executor myExecutor= null;
   boolean _debug = true;
 
   String _table = "";
@@ -265,34 +265,27 @@ public class CassandraClient10 extends DB
   //  array[i] = client;
     //enddddd
    // }
+
     try {
-		new Executor("109.231.85.43:2181", "/cazooMaster", this ).run();
-	} catch (KeeperException e) {
+		myExecutor = new Executor("109.231.85.43:2181", "/cazooMaster", this );
+    } catch (KeeperException e) {
 		System.out.println("pgaref KeeperException");
 		e.printStackTrace();
 	} catch (IOException e) {
 		System.out.println("pgaref IOException");
 		e.printStackTrace();
 	}
-    System.out.println("Done here");
-    /*-------------------------patch-------------------- 	
+    
+    /*-------------------------patch-------------------- */	
     Thread t = new Thread() {
         public void run() {
-        	try {
-				new Executor("109.231.85.43:2181", "/cazooMaster", CassandraClient10.Instance ).run();
-			} catch (KeeperException e) {
-				System.out.println("pgaref KeeperException");
-				e.printStackTrace();
-			} catch (IOException e) {
-				System.out.println("pgaref IOException");
-				e.printStackTrace();
-			}
+        	myExecutor.run();
         }
     };
     t.start();
     
    /*-------------------------------------------------------------*/ 	
-  	
+    System.out.println("Done here");
     
     
     
