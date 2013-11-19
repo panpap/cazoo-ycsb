@@ -144,12 +144,11 @@ public class DataMonitor implements Watcher, StatCallback {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-            System.out.println("New Data: "+  ringstate);
+            //System.out.println("New Data: "+  ringstate);
             String[] binds=ringstate.split("/");
             String[] tmp=binds[1].split(":");
             String host=tmp[0];	//ip
             String port=tmp[1];	//port
-            System.out.println("Going to call Client: "+ (client  == null));
             this.client.pgarefinit(host);
         }
     }
