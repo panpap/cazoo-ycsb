@@ -84,7 +84,7 @@ class StatusThread extends Thread
 
 			long en=System.currentTimeMillis();
 
-			long interval=en-st;
+			double interval=en-st;
 			//double throughput=1000.0*((double)totalops)/((double)interval);
 
 			double curthroughput=1000.0*(((double)(totalops-lasttotalops))/((double)(en-lasten)));
