@@ -33,14 +33,14 @@ public class Executor
 
     public Executor(String hostPort, String znode, CassandraClient10 cl) throws KeeperException, IOException {
         zk = new ZooKeeper(hostPort, 3000, this);
-        cl = client;
-        dm = new DataMonitor(zk, znode, null, this, cl);
+        client = cl;
+        dm = new DataMonitor(zk, znode, null, this, client);
         
-    }
+    }/*
     public Executor(String hostPort, String znode) throws KeeperException, IOException {
         zk = new ZooKeeper(hostPort, 3000, this);
         dm = new DataMonitor(zk, znode, null, this);
-    }
+    }*/
 
     /**
      * @param args
