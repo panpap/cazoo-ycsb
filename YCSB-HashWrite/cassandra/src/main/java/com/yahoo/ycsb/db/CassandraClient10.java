@@ -36,6 +36,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 import java.nio.charset.CharsetEncoder;
 
+import org.apache.thrift.TException;
 import org.apache.thrift.transport.TTransport;
 import org.apache.thrift.transport.TFramedTransport;
 import org.apache.thrift.transport.TSocket;
@@ -174,7 +175,7 @@ public class CassandraClient10 extends DB
             }
             try
             {
-            	client.set_keyspace("usertable");
+            	this.client.set_keyspace("usertable");
             }
             catch (Exception e)
             {
@@ -183,6 +184,13 @@ public class CassandraClient10 extends DB
             }
             myhost = newhost;
             System.out.println("pgaref All done!!!");
+            System.out.println("TR open? " + (tr.isOpen()));
+            try {
+				System.out.println("Client "+ this.client.describe_cluster_name());
+			} catch (TException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
         
     	
