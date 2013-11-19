@@ -179,8 +179,9 @@ public class CassandraClient10 extends DB
             }
             catch (Exception e)
             {
-              e.printStackTrace();
-              e.printStackTrace(System.out);
+            	System.out.println("AcaZoo - Set Keyspace failed!");
+             // e.printStackTrace();
+             // e.printStackTrace(System.out);
             }
             myhost = newhost;
             /*System.out.println("pgaref All done!!!");
