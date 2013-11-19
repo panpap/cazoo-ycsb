@@ -56,7 +56,7 @@ public class CassandraClient10 extends DB
   public static final int Error = -1;
   public static final ByteBuffer emptyByteBuffer = ByteBuffer.wrap(new byte[0]);
 
-  public static int ConnectionRetries;
+  public static int ConnectionRetries = 2;
   public int OperationRetries;
   public String column_family;
   private static Boolean running=true;
@@ -145,13 +145,12 @@ public class CassandraClient10 extends DB
         else{
         	System.out.println("Do something: "+ newhost);
         	System.out.println("TR open? " + (tr.isOpen()));
-        	tr.close();
         	
         	for (int retry = 0; retry < ConnectionRetries; retry++)
             {
               tr = new TFramedTransport(new TSocket(newhost, 9160));
               TProtocol proto = new TBinaryProtocol(tr);
-              Instance.client = new Cassandra.Client(proto);
+              this.client = new Cassandra.Client(proto);
               try
               {
             	tr.open();
