@@ -30,7 +30,7 @@ public class DataMonitor implements Watcher, StatCallback {
     byte prevData[];
     
     CassandraClient10 client;
-
+    /*
     public DataMonitor(ZooKeeper zk, String znode, Watcher chainedWatcher,
             DataMonitorListener listener) {
         this.zk = zk;
@@ -40,7 +40,7 @@ public class DataMonitor implements Watcher, StatCallback {
         // Get things started by checking if the node exists. We are going
         // to be completely event driven
         zk.exists(znode, true, this, null);
-    }
+    }*/
     
     public DataMonitor(ZooKeeper zk, String znode, Watcher chainedWatcher,
             DataMonitorListener listener, CassandraClient10 cl) {
@@ -149,6 +149,7 @@ public class DataMonitor implements Watcher, StatCallback {
             String[] tmp=binds[1].split(":");
             String host=tmp[0];	//ip
             String port=tmp[1];	//port
+            System.out.println("Going to call Client: "+ (client  == null));
             this.client.pgarefinit(host);
         }
     }
