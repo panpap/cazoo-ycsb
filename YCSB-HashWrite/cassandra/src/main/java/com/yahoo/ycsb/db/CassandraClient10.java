@@ -740,14 +740,14 @@ public class CassandraClient10 extends DB
       }
       try
       {
-        Thread.sleep(500);
+        Thread.sleep(100);
       } catch (InterruptedException e)
       {
       }
     }
-
+    /*
     errorexception.printStackTrace();
-    errorexception.printStackTrace(System.out);
+    errorexception.printStackTrace(System.out);*/
     return Error;
   }
 
