@@ -43,7 +43,7 @@ class StatusThread extends Thread
 	/**
 	 * The interval for reporting status.
 	 */
-	public static final long sleeptime=10000;
+	public static final long sleeptime=1000;
 
 	public StatusThread(Vector<Thread> threads, String label, boolean standardstatus)
 	{
@@ -108,10 +108,12 @@ class StatusThread extends Thread
 			if (totalops==0)
 			{
 				System.out.println(_label+" "+(interval/1000)+" sec: "+totalops+" operations; "+Measurements.getMeasurements().getSummary());
+				MyLogWriter(_label+" "+(interval/1000)+" sec: "+totalops+" operations; "+Measurements.getMeasurements().getSummary());
 			}
 			else
 			{
 				System.out.println(_label+" "+(interval/1000)+" sec: "+totalops+" operations; "+d.format(curthroughput)+" current ops/sec; "+Measurements.getMeasurements().getSummary());
+				MyLogWriter(_label+" "+(interval/1000)+" sec: "+totalops+" operations; "+d.format(curthroughput)+" current ops/sec; "+Measurements.getMeasurements().getSummary());
 			}
 			}
 
@@ -126,6 +128,27 @@ class StatusThread extends Thread
 
 		}
 		while (!alldone);
+		
+		
+	}
+	private void MyLogWriter(String towrite) {
+		try {
+			File file = new File("AcaZoo-Stats" + ".dat");
+
+			// if file doesnt exists, then create it
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+			// true = append file
+			FileWriter fileWritter = new FileWriter(file.getName(), true);
+			BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
+			bufferWritter.write(towrite + "\n");
+			bufferWritter.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 }
 
@@ -149,8 +172,6 @@ class ClientThread extends Thread
 	Object _workloadstate;
 	Properties _props;
 	
-	/* pgaref */
-	int _currops;
 
 
 	/**
@@ -173,7 +194,6 @@ class ClientThread extends Thread
 		_workload=workload;
 		_opcount=opcount;
 		_opsdone=0;
-		_currops=0;
 		_target=targetperthreadperms;
 		_threadid=threadid;
 		_threadcount=threadcount;
@@ -231,8 +251,6 @@ class ClientThread extends Thread
 			{
 				long st=System.currentTimeMillis();
 				
-				int timePassed = 0;
-				long StartTime=System.currentTimeMillis();
 				
 				while (((_opcount == 0) || (_opsdone < _opcount)) && !_workload.isStopRequested())
 				{
@@ -243,15 +261,6 @@ class ClientThread extends Thread
 					}
 
 					_opsdone++;
-					_currops++;
-					/*pgaref - Simple Timer  For File Writing */
-		    		if(((System.currentTimeMillis()) - StartTime) >= 1000){
-		    			
-		    				//File Write timePassed \t _currops 
-		    				MyLogWriter(++timePassed, _currops);
-		            		_currops = 0;
-		    				StartTime=System.currentTimeMillis();
-		            }
 
 					//throttle the operations
 					if (_target>0)
@@ -281,21 +290,10 @@ class ClientThread extends Thread
 
 				while (((_opcount == 0) || (_opsdone < _opcount)) && !_workload.isStopRequested())
 				{
-					int timePassed = 0;
-					long StartTime=System.currentTimeMillis();
 					if (!_workload.doInsert(_db,_workloadstate))
 					{
 						break;
 					}
-					_currops++;
-					/*pgaref - Simple Timer  For File Writing */
-		    		if(((System.currentTimeMillis()) - StartTime) >= 1000){
-		    			
-		    				//File Write timePassed \t _currops 
-		    				MyLogWriter(++timePassed, _currops);
-		            		_currops = 0;
-		    				StartTime=System.currentTimeMillis();
-		            }
 					_opsdone++;
 
 					//throttle the operations
@@ -337,28 +335,7 @@ class ClientThread extends Thread
 			e.printStackTrace(System.out);
 			return;
 		}
-	}
-	
-	
-	private void MyLogWriter(int time, int value) {
-		try {
-			File file = new File("Log-Thread" + _threadid + ".txt");
-
-			// if file doesnt exists, then create it
-			if (!file.exists()) {
-				file.createNewFile();
-			}
-			// true = append file
-			FileWriter fileWritter = new FileWriter(file.getName(), true);
-			BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
-			bufferWritter.write(time + "\t" + value + "\n");
-			bufferWritter.close();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-	}
+	}	
 	
 }
 
