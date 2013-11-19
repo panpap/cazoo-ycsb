@@ -87,9 +87,9 @@ public class CassandraClient10 extends DB
   public static final String DELETE_CONSISTENCY_LEVEL_PROPERTY_DEFAULT = "ONE";
 
 
-  static TTransport tr;
+  TTransport tr;
   static CassandraClient10 Instance;
-  static Cassandra.Client client;
+  Cassandra.Client client;
    static String myhost;
  // Cassandra.Client [] array;
 
@@ -136,7 +136,7 @@ public class CassandraClient10 extends DB
     }
     
     
-    public static void pgarefinit(String newhost) {
+    public void pgarefinit(String newhost) {
         Exception connectexception = null;
         System.out.println("PG Mpika change!");
         if(myhost.compareTo(newhost) == 0 ){
@@ -272,7 +272,7 @@ public class CassandraClient10 extends DB
     Thread t = new Thread() {
         public void run() {
         	try {
-				new Executor("109.231.85.43:2181", "/cazooMaster").run();
+				new Executor("109.231.85.43:2181", "/cazooMaster", CassandraClient10.Instance ).run();
 			} catch (KeeperException e) {
 				System.out.println("pgaref KeeperException");
 				e.printStackTrace();
