@@ -139,13 +139,13 @@ public class CassandraClient10 extends DB
     
     public void pgarefinit(String newhost) {
         Exception connectexception = null;
-        System.out.println("PG Mpika change!");
+        System.out.println("CF watcher Change IP!");
         if(myhost.compareTo(newhost) == 0 ){
-        	System.out.println("Do nothing!");
+        	//System.out.println("Do nothing!");
         }
         else{
-        	System.out.println("Do something: "+ newhost);
-        	System.out.println("TR open? " + (tr.isOpen()));
+        	//System.out.println("Do something: "+ newhost);
+        	//System.out.println("TR open? " + (tr.isOpen()));
         	
         	for (int retry = 0; retry < ConnectionRetries; retry++)
             {
@@ -183,14 +183,14 @@ public class CassandraClient10 extends DB
               e.printStackTrace(System.out);
             }
             myhost = newhost;
-            System.out.println("pgaref All done!!!");
+            /*System.out.println("pgaref All done!!!");
             System.out.println("pgarefinit TR open? " + (tr.isOpen()));
             try {
 				System.out.println("Client "+ this.client.describe_cluster_name());
 			} catch (TException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}*/
         }
         
     	
@@ -218,9 +218,6 @@ public class CassandraClient10 extends DB
     OperationRetries = Integer.parseInt(getProperties().getProperty(OPERATION_RETRY_PROPERTY,
         OPERATION_RETRY_PROPERTY_DEFAULT));
 
-    String username = getProperties().getProperty(USERNAME_PROPERTY);
-    String password = getProperties().getProperty(PASSWORD_PROPERTY);
-
     readConsistencyLevel = ConsistencyLevel.valueOf(getProperties().getProperty(READ_CONSISTENCY_LEVEL_PROPERTY, READ_CONSISTENCY_LEVEL_PROPERTY_DEFAULT));
     writeConsistencyLevel = ConsistencyLevel.valueOf(getProperties().getProperty(WRITE_CONSISTENCY_LEVEL_PROPERTY, WRITE_CONSISTENCY_LEVEL_PROPERTY_DEFAULT));
     scanConsistencyLevel = ConsistencyLevel.valueOf(getProperties().getProperty(SCAN_CONSISTENCY_LEVEL_PROPERTY, SCAN_CONSISTENCY_LEVEL_PROPERTY_DEFAULT));
@@ -232,8 +229,6 @@ public class CassandraClient10 extends DB
     
    // array = new Cassandra.Client[4];
    
-   
-    String hh = "109.231.85.83";
     String[] allhosts = hosts.split(",");
     
    // for(int i= 0 ; i < allhosts.length ; i++){
@@ -293,7 +288,7 @@ public class CassandraClient10 extends DB
     t.start();
     
    /*-------------------------------------------------------------*/ 	
-    System.out.println("Done here");
+   // System.out.println("Done here");
     
     
     
@@ -526,14 +521,14 @@ public class CassandraClient10 extends DB
 
       try
       {
-        Thread.sleep(500);
+        Thread.sleep(100);
       } catch (InterruptedException e)
       {
       }
-      System.out.println("I retry READ!!");
+     // System.out.println("I retry READ!!");
     }
   
-    	System.out.println("Read TR is : "+ (tr.isOpen()));
+    	//System.out.println("Read TR is : "+ (tr.isOpen()));
     /*errorexception.printStackTrace();
     if(errorexception != null)
     	errorexception.printStackTrace(System.out);*/
