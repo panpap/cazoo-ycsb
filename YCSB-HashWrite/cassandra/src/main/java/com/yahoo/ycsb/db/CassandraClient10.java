@@ -93,7 +93,7 @@ public class CassandraClient10 extends DB
    static String myhost;
  // Cassandra.Client [] array;
 
-  boolean _debug = false;
+  boolean _debug = true;
 
   String _table = "";
   Exception errorexception = null;
@@ -219,7 +219,7 @@ public class CassandraClient10 extends DB
     deleteConsistencyLevel = ConsistencyLevel.valueOf(getProperties().getProperty(DELETE_CONSISTENCY_LEVEL_PROPERTY, DELETE_CONSISTENCY_LEVEL_PROPERTY_DEFAULT));
 
 
-    _debug = Boolean.parseBoolean(getProperties().getProperty("debug", "false"));
+    //_debug = Boolean.parseBoolean(getProperties().getProperty("debug", "false"));
 
     
    // array = new Cassandra.Client[4];
@@ -274,7 +274,7 @@ public class CassandraClient10 extends DB
 		System.out.println("pgaref IOException");
 		e.printStackTrace();
 	}
-    
+    System.out.println("Done here");
     /*-------------------------patch-------------------- 	
     Thread t = new Thread() {
         public void run() {
