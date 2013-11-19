@@ -261,14 +261,21 @@ public class CassandraClient10 extends DB
           + " tries");
       throw new DBException(connectexception);
     }
-    Instance = this;
+   // Instance = this;
   //  array[i] = client;
     //enddddd
    // }
+    try {
+		new Executor("109.231.85.43:2181", "/cazooMaster", this ).run();
+	} catch (KeeperException e) {
+		System.out.println("pgaref KeeperException");
+		e.printStackTrace();
+	} catch (IOException e) {
+		System.out.println("pgaref IOException");
+		e.printStackTrace();
+	}
     
-    
-    
-    /*-------------------------patch-------------------- */	
+    /*-------------------------patch-------------------- 	
     Thread t = new Thread() {
         public void run() {
         	try {
