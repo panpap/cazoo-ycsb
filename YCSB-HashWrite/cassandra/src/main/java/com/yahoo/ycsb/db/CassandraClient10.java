@@ -144,7 +144,8 @@ public class CassandraClient10 extends DB
         }
         else{
         	System.out.println("Do something: "+ newhost);
-        	//tr.close();
+        	System.out.println("TR open? " + (tr.isOpen()));
+        	tr.close();
         	
         	for (int retry = 0; retry < ConnectionRetries; retry++)
             {
