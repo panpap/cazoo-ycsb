@@ -530,11 +530,13 @@ public class CassandraClient10 extends DB
       } catch (InterruptedException e)
       {
       }
+      System.out.println("I retry READ!!");
     }
-    if(errorexception != null)
-    	tr.close();
+  
+    	System.out.println("Read TR is : "+ (tr.isOpen()));
     //errorexception.printStackTrace();
-    errorexception.printStackTrace(System.out);
+    if(errorexception != null)
+    	errorexception.printStackTrace(System.out);
     return Error;
 
   }
