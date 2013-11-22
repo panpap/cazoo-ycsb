@@ -270,6 +270,8 @@ public class CassandraClient10 extends DB
     //enddddd
    // }
 
+    
+    /*-------------------------patch-------------------- 
     try {
 		myExecutor = new Executor("109.231.85.43:2181", "/cazooMaster", this );
     } catch (KeeperException e) {
@@ -280,7 +282,7 @@ public class CassandraClient10 extends DB
 		e.printStackTrace();
 	}
     
-    /*-------------------------patch-------------------- */	
+    
     Thread t = new Thread() {
         public void run() {
         	myExecutor.run();
