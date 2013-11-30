@@ -234,7 +234,9 @@ public class CassandraClient10 extends DB
     
    // for(int i= 0 ; i < allhosts.length ; i++){
    // String myhost = allhosts[0];
-    myhost = allhosts[0];
+   // myhost = allhosts[0];
+    
+    String myhost = allhosts[random.nextInt(allhosts.length)];
     
     Exception connectexception = null;
 
