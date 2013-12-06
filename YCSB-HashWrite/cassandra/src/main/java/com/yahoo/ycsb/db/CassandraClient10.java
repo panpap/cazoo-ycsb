@@ -139,7 +139,7 @@ public class CassandraClient10 extends DB
     
     public void pgarefinit(String newhost) {
         Exception connectexception = null;
-        //System.out.println("CF watcher Change IP!");
+        System.out.println("\n pgaref - CF watcher Change IP!");
         if(myhost.compareTo(newhost) == 0 ){
         	//System.out.println("Do nothing!");
         }
