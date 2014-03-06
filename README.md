@@ -1,3 +1,3 @@
-CaZoo-ycsb
+ACaZoo-ycsb
 ==========
-YCSB Client for CaZoo Distributed Key-Value Store
+YCSB Client for AcaZoo Distributed Key-Value Store
